@@ -61,7 +61,68 @@ class ResortController extends Controller
                 Session::flash('error','Opps! Failed to insert.');
                 return redirect()->back();
             }
+        }
 
+        public function show($slug){
+            $data = Resort::where('resort_status',1)->where('resort_slug',$slug)->firstOrFail();
+            return view('admin.resort.show', compact('data'));
+        }
+
+
+        public function edit($slug){
+            $data = Resort::where('resort_status',1)->where('resort_slug',$slug)->firstOrFail();
+            return view('admin.resort.edit', compact('data'));
+        }
+
+        public function update(Request $request){
+            $id = $request->resort_id;
+            $this->validate($request,[
+                'resort_name' => 'required',
+            ],[
+                'resort_name.required' => 'Please enter Resort Name',
+            ]);
+
+            $slug = Str::slug($request['resort_name']);
+            $update = Resort::where('resort_id',$id)->update([
+            'resort_name' => $request['resort_name'],
+            'resort_detail' => $request['resort_detail'],
+            'resort_slug' => $slug,
+            'updated_at' => Carbon::now()->toDateTimeString()
+            ]);
+
+            if($request->hasFile('resort_image')){
+                $image = $request->file('resort_image');
+                $imageName = $id . time() . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(300,300)->save('uploads/resort/' . $imageName);
+
+                Resort::where('resort_id',$id)->update([
+                    'resort_image' => $imageName,
+                    'updated_at' => Carbon::now()->toDateTimeString(),
+                ]);
+            }
+
+            if($update){
+                Session::flash('success','Successfully update resort info.');
+                return redirect()->route('resort.index');
+            }else{
+                Session::flash('error','Opps! Failed update.');
+                return redirect()->back();
+            }
+        }
+
+        public function softdelete($slug){
+            $soft = Resort::where('resort_status',1)->where('resort_slug',$slug)->update([
+                'resort_status' => 0,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+
+            if($soft){
+                Session::flash('success','Successfully SoftDelete resort.');
+                return redirect()->back();
+            }else{
+                Session::flash('error','Opps! Failed to SoftDelete.');
+                return redirect()->back();
+            }
         }
 
 }
