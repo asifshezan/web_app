@@ -346,9 +346,9 @@
                             </li>
 
                             <li>
-                                <a href="layouts-horizontal.html">
+                                <a href="{{ route('resort.index')}}">
                                     <i data-feather="layout"></i>
-                                    <span data-key="t-horizontal">Horizontal</span>
+                                    <span data-key="t-resorts">Resorts</span>
                                 </a>
                             </li>
 
