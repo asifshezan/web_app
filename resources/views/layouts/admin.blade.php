@@ -344,14 +344,24 @@
                                     <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
                                 </ul>
                             </li>
-
+                            <li>
+                                <a href="{{ route('booking.index')}}">
+                                    <i data-feather="layout"></i>
+                                    <span data-key="t-Booking">Booking</span>
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ route('resort.index')}}">
                                     <i data-feather="layout"></i>
                                     <span data-key="t-resorts">Resorts</span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="{{ route('website.home')}}" target="_blank">
+                                    <i data-feather="globe"></i>
+                                    <span data-key="t-Website">Website</span>
+                                </a>
+                            </li>
                         </ul>
 
 

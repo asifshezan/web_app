@@ -2,14 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Website\WebsiteController;
+
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ResortController;
 
+
+Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
+
+    Route::group(['prefix' => 'booking'], function() {
+        Route::get('/',[ BookingController::class, 'index' ])->name('booking.index');
+        Route::get('/create',[ BookingController::class, 'create' ])->name('booking.create');
+        Route::post('/',[ BookingController::class, 'store' ])->name('booking.store');
+        Route::get('/show/{slug}',[ BookingController::class, 'show' ])->name('booking.show');
+        Route::get('/edit/{slug}',[ BookingController::class, 'edit' ])->name('booking.edit');
+        Route::put('/update/{slug}',[ BookingController::class, 'update' ])->name('booking.update');
+        Route::get('/softdelete/{slug}',[ BookingController::class, 'softdelete' ])->name('booking.softdelete');
+        Route::get('/delete/{slug}',[ BookingController::class, 'destroy' ])->name('booking.destroy');
+    });
 
     Route::group(['prefix' => 'resort'], function() {
         Route::get('/',[ ResortController::class, 'index' ])->name('resort.index');
