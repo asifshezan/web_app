@@ -22,7 +22,7 @@
       <div class="container">
           <div class="row justify-content-end">
               <div class="col-lg-4">
-                      <form action="{{ route('booking.store') }}" method="POST" class="appointment-form">
+                      <form action="{{ route('booking_form') }}" method="POST" class="appointment-form">
                         @csrf
                           <h3 class="mb-3">Book your apartment</h3>
                           <div class="row">
@@ -57,11 +57,6 @@
                           </div>
                             </div>
                             </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                            </div>
-                            </div>
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                 <input type="text" name="booking_phone" class="form-control" placeholder="Phone number">

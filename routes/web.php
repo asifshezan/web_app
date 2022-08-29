@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ResortController;
 
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
+Route::post('/', [WebsiteController::class, 'booking_form'])->name('booking_form');
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
@@ -18,13 +19,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
 
     Route::group(['prefix' => 'booking'], function() {
         Route::get('/',[ BookingController::class, 'index' ])->name('booking.index');
-        Route::get('/create',[ BookingController::class, 'create' ])->name('booking.create');
-        Route::post('/',[ BookingController::class, 'store' ])->name('booking.store');
         Route::get('/show/{slug}',[ BookingController::class, 'show' ])->name('booking.show');
-        Route::get('/edit/{slug}',[ BookingController::class, 'edit' ])->name('booking.edit');
-        Route::put('/update/{slug}',[ BookingController::class, 'update' ])->name('booking.update');
         Route::get('/softdelete/{slug}',[ BookingController::class, 'softdelete' ])->name('booking.softdelete');
-        Route::get('/delete/{slug}',[ BookingController::class, 'destroy' ])->name('booking.destroy');
+
     });
 
     Route::group(['prefix' => 'resort'], function() {

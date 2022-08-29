@@ -20,60 +20,6 @@ class BookingController extends Controller
         return view('admin.booking.index', compact('alldata'));
     }
 
-    // public function store(Request $request){
-    //     $this->validate($request,[
-    //         'booking_start_date' => 'required',
-    //         'booking_end_date' => 'required',
-    //     ],[
-    //         'booking_start_date.required' => 'Please enter Booking start date',
-    //         'booking_end_date.required' => 'Please enter Booking end date',
-    //     ]);
-
-    //     $slug = uniqid();
-    //     $insert = Booking::insertGetId([
-    //         'resort_id' => $request->resort_id,
-    //         'booking_start_date' => $request['booking_start_date'],
-    //         'booking_end_date' => $request['booking_end_date'],
-    //         'booking_phone' => $request['booking_phone'],
-    //         'booking_slug' => $slug,
-    //         'booking_status' => 1,
-    //         'created_at' => Carbon::now()->toDateTimeString()
-    //     ]);
-
-    //         if($insert){
-    //             Session::flash('success','successfully insert resort');
-    //             return redirect()->back()->with('success','Successfully Booked.');
-    //         }else{
-    //             Session::flash('error','Opps! Failed to insert.');
-    //             return redirect()->back();
-    //         }
-    //     }
-
-
-        public function store(Request $request){
-            $booked = Booking::where('booking_status',1)->where('booking_id', $request->booking_id)->first();
-
-            if($booked){
-                if($booked->booking_end_date > date('Y-m-d', strtotime(Carbon::now()))){
-                    $slug = uniqid();
-                    $insert = Booking::insertGetId([
-                        'resort_id' => $request->resort_id,
-                        'booking_start_date' => $request['booking_start_date'],
-                        'booking_end_date' => $request['booking_end_date'],
-                        'booking_phone' => $request['booking_phone'],
-                        'booking_slug' => $slug,
-                        'booking_status' => 1,
-                        'created_at' => Carbon::now()->toDateTimeString()
-                    ]);
-                    return redirect()->back()->with('success', 'applied successfully.', compact('insert'));
-                }else{
-                    return 'already booking.';
-                }
-            }else{
-                return "Try Next Time. It's already booked.";
-            }
-        }
-
         public function show($slug){
             $data = Booking::where('booking_status',1)->where('booking_slug',$slug)->firstOrFail();
             return view('admin.booking.show', compact('data'));
