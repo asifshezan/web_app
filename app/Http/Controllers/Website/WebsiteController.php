@@ -14,10 +14,10 @@ class WebsiteController extends Controller
     }
 
     public function booking_form(Request $request){
-        $booked = Booking::where('booking_status',1)->first();
+        $booked = Booking::where('booking_status',1)->orderBy('booking_id','ASC')->first();
 
-        if($booked){
-            if($booked->book_end_date && $request['booking_end_date']){
+
+            if($booked->booking_end_date === date('Y-m-d', strtotime(Carbon::now()))){
                 $slug = uniqid();
                 $insert= Booking::insertGetId([
                     'resort_id' => $request['resort_id'],
@@ -28,13 +28,11 @@ class WebsiteController extends Controller
                     'booking_status' => 1,
                     'created_at' => Carbon::now()->toDateTimeString()
                 ]);
-                return redirect()->back()->with('success', 'Coupon code applied successfully.', compact('insert'));
+                return redirect()->back()->with('success', 'Resort Booking Successfull.', compact('insert'));
             }else{
-                return 'Already Booked.';
+                return redirect()->back()->with('error','This Resort Already Booked');
             }
-        }else{
-            return "Coupon code is not valid";
-        }
+
     }
 
 
