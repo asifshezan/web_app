@@ -333,11 +333,11 @@
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow">
                                     <i data-feather="users"></i>
-                                    <span data-key="t-authentication">Authentication</span>
+                                    <span data-key="t-users">Users</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="auth-login.html" data-key="t-login">Login</a></li>
-                                    <li><a href="auth-register.html" data-key="t-register">Register</a></li>
+                                    <li><a href="{{ route('user.index')}}" data-key="t-all-user">All User</a></li>
+                                    <li><a href="{{ route('user.create')}}" data-key="t-add-user">Create User</a></li>
                                 </ul>
                             </li>
 
