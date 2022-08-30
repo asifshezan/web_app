@@ -352,6 +352,12 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="{{ route('role.index')}}">
+                                    <i data-feather="layout"></i>
+                                    <span data-key="t-Role">Role</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('booking.index')}}">
                                     <i data-feather="layout"></i>
                                     <span data-key="t-Booking">Booking</span>
