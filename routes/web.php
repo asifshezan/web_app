@@ -4,18 +4,30 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Website\WebsiteController;
 
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ResortController;
 
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
-Route::post('/', [WebsiteController::class, 'booking_form'])->name('booking_form');
+Route::post('/book', [WebsiteController::class, 'booking_form'])->name('booking_form');
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
+
+    Route::group(['prefix' => 'role'], function() {
+        Route::get('/',[ RoleController::class, 'index' ])->name('role.index');
+        Route::get('/create',[ RoleController::class, 'create' ])->name('role.create');
+        Route::post('/',[ RoleController::class, 'store' ])->name('role.store');
+        Route::get('/show/{slug}',[ RoleController::class, 'show' ])->name('role.show');
+        Route::get('/edit/{slug}',[ RoleController::class, 'edit' ])->name('role.edit');
+        Route::put('/update/{slug}',[ RoleController::class, 'update' ])->name('role.update');
+        Route::get('/softdelete/{slug}',[ RoleController::class, 'softdelete' ])->name('role.softdelete');
+        Route::get('/delete/{slug}',[ RoleController::class, 'destroy' ])->name('role.destroy');
+    });
 
     Route::group(['prefix' => 'booking'], function() {
         Route::get('/',[ BookingController::class, 'index' ])->name('booking.index');

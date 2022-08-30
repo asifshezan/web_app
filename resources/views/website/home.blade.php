@@ -8,7 +8,7 @@
 <div class="hero-wrap js-fullheight" style="background-image: url('{{asset('contents/website')}}/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
         <div class="col-md-7 ftco-animate">
             <h2 class="subheading">Welcome to Vacation Rental</h2>
             <h1 class="mb-4">Rent an appartment for your vacation</h1>
@@ -22,10 +22,9 @@
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-lg-4">
+
                     <form action="{{ route('booking_form') }}" method="POST" class="appointment-form">
                         @csrf
-                        <h3 class="mb-3">Book your Resort</h3>
-
                         @if (Session::has('success'))
                     <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                         <strong>{{ Session::get('success') }}</strong>
@@ -42,6 +41,10 @@
                         </button>
                     </div>
                     @endif
+                        <h3 class="mb-3">Book your Resort</h3>
+
+                        {{-- appointment_date-check-in --}}
+                        {{-- appointment_date-check-out --}}
 
                         <div class="row">
                             <div class="col-md-12">
@@ -49,8 +52,8 @@
                                     <div class="form-field">
                                         <div class="select-wrap">
                                 <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                <select name="resort_id" id="" class="form-control">
-                                    <option>Resorts Name</option>
+                                <select name="resort_id" id="resort_id" class="form-control">
+                                    <option selected disabled>Resorts Name</option>
                                     @foreach ($allresorts as $resorts)
                                     <option value="{{ $resorts['resort_id']}}">{{ $resorts['resort_name']}}</option>
                                     @endforeach
@@ -63,21 +66,26 @@
                                 <div class="form-group">
                                 <div class="input-wrap">
                             <div class="icon"><span class="ion-md-calendar"></span></div>
-                            <input type="text" name="booking_start_date" class="form-control appointment_date-check-in" placeholder="Check-In">
+                            <input type="date" name="booking_start_date" class="form-control" placeholder="Check-In">
                         </div>
                             </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                  <div class="input-wrap">
-                              <div class="icon"><span class="ion-md-calendar"></span></div>
-                              <input type="text" name="booking_end_date" class="form-control appointment_date-check-out" placeholder="Check-Out">
-                          </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <div class="input-wrap">
+                            <div class="icon"><span class="ion-md-calendar"></span></div>
+                            <input type="date" name="booking_end_date" class="form-control" placeholder="Check-Out">
+                        </div>
                             </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                 <input type="text" name="booking_phone" class="form-control" placeholder="Phone number">
+                            </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <input type="email" name="booking_email" class="form-control" placeholder="Email">
                             </div>
                             </div>
                             <div class="col-md-12">

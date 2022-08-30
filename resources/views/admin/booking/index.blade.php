@@ -31,6 +31,7 @@
                                 <th>Booking Start Date</th>
                                 <th>Booking End Date</th>
                                 <th>Phone</th>
+                                <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                 <td>{{ $data['booking_start_date'] }}</td>
                                 <td>{{ $data['booking_end_date'] }}</td>
                                 <td>{{ $data['booking_phone'] }}</td>
+                                <td>{{ $data['booking_email'] }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
