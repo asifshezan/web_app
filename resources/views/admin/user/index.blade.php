@@ -61,23 +61,23 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <a href="{{ route('user.show',$data->slug) }}" class="dropdown-item"><i
+                                                <a href="{{ route('user.show',$data->id) }}" class="dropdown-item"><i
                                                         class="bx bx-show-alt label-icon"></i> Show</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('user.edit',$data->slug) }}"
+                                                <a href="{{ route('user.edit',$data->id) }}"
                                                     class="dropdown-item"><i class=" bx bx-edit-alt label-icon"></i>
                                                     Edit</a>
                                             </li>
                                             <li>
-                                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{ $data['slug'] }}"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
+                                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{ $data['id'] }}"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                             {{-- Delete Modal --}}
-                            <div class="modal fade bs-example-modal-sm{{ $data['slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
+                            <div class="modal fade bs-example-modal-sm{{ $data['id'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-sm modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <a href="{{ route('user.softdelete',$data['slug']) }}" class="btn btn-primary">Delete</a>
+                                            <a href="{{ route('user.softdelete',$data['id']) }}" class="btn btn-primary">Delete</a>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->

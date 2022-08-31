@@ -10,8 +10,8 @@
     <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
         <div class="col-md-7 ftco-animate">
-            <h2 class="subheading">Welcome to Vacation Rental</h2>
-            <h1 class="mb-4">Rent an appartment for your vacation</h1>
+            <h2 class="subheading">Welcome to resort book</h2>
+            <h1 class="mb-4">Book a resort for your vacation</h1>
         <p><a href="#" class="btn btn-primary">Learn more</a> <a href="#" class="btn btn-white">Contact us</a></p>
         </div>
     </div>
@@ -42,10 +42,6 @@
                     </div>
                     @endif
                         <h3 class="mb-3">Book your Resort</h3>
-
-                        {{-- appointment_date-check-in --}}
-                        {{-- appointment_date-check-out --}}
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -115,11 +111,6 @@
                 </div>
               </div>
             @endforeach
-
-
-
-
-
       </div>
       </div>
   </section>

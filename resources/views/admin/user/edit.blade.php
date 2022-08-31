@@ -47,13 +47,6 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 my-2">
-                                <label for="email">Email</label>
-                                <input class="form-control" type="email" name="email" value="{{ $data->email }}">
-                                @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 my-2">
                                 <label for="role">User Role</label>
 
                                 @php
@@ -82,9 +75,9 @@
                         </div>
                         <div class="col-md-12 my-2 d-flex">
                             @if ($data->photo)
-                            <img style="width: 100px" class="m-auto" src="{{ asset('uploads/user/'.$data->photo) }}" alt="Image">
+                            <img style="width: 100px" class="m-auto" src="{{ asset('uploads/user/' . $data->photo) }}" alt="Image">
                             @else
-                            <img style="width: 100px" class="m-auto" src="{{ asset('uploads/no_image.png') }}" alt="resort Image">
+                            <img style="width: 100px" class="m-auto" src="{{ asset('uploads/no-entry.png') }}" alt="resort Image">
                             @endif
                         </div>
                         <div class="col-md-2 mt-4">

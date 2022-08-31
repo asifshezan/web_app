@@ -78,8 +78,8 @@ class UserController extends Controller
         }
     }
 
-    public function edit($slug){
-        $data = User::where('status',1)->where('slug',$slug)->firstOrFail();
+    public function edit($id){
+        $data = User::where('status',1)->where('id',$id)->firstOrFail();
         return view('admin.user.edit',compact('data'));
     }
 
@@ -88,11 +88,9 @@ class UserController extends Controller
         $id = $request['id'];
         $this->validate($request,[
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role'=> ['required']
         ],[
             'name.required'=>'Please enter your name.',
-            'email.required'=>'Please enter your email.',
             'role.required'=>'Please select user role.',
         ]);
 
@@ -100,7 +98,6 @@ class UserController extends Controller
         $update = User::where('id',$id)->update([
             'name' => $request['name'],
             'phone' => $request['phone'],
-            'email' => $request['email'],
             'slug' => $slug,
             'role_id' => $request['role'],
             'updated_at' => Carbon::now()->toDateTimeString()
@@ -109,7 +106,7 @@ class UserController extends Controller
         if($request->hasFile('photo')){
             $image = $request->file('photo');
             $imageName = $id . time() .'_'. rand(112000,11112000) .'.'. $image->getClientOriginalExtension();
-            Image::make($image)->resize(200,200)->save('uploads/user/'.$imageName);
+            Image::make($image)->resize(200,200)->save('uploads/user/' . $imageName);
 
             User::where('id',$id)->update([
                 'photo' => $imageName,
@@ -125,8 +122,8 @@ class UserController extends Controller
         }
     }
 
-    public function softdelete($slug){
-        $soft = User::where('status',1)->where('slug',$slug)->update([
+    public function softdelete($id){
+        $soft = User::where('status',1)->where('id',$id)->update([
         'status'=>'0',
         'updated_at'=>Carbon::now()->toDateTimeString()
     ]);

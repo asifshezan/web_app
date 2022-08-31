@@ -23,11 +23,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
         Route::get('/',[ UserController::class, 'index' ])->name('user.index');
         Route::get('/create',[ UserController::class, 'create' ])->name('user.create');
         Route::post('/',[ UserController::class, 'store' ])->name('user.store');
-        Route::get('/show/{slug}',[ UserController::class, 'show' ])->name('user.show');
-        Route::get('/edit/{slug}',[ UserController::class, 'edit' ])->name('user.edit');
-        Route::put('/update/{slug}',[ UserController::class, 'update' ])->name('user.update');
-        Route::get('/softdelete/{slug}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
-        Route::get('/delete/{slug}',[ UserController::class, 'destroy' ])->name('user.destroy');
+        Route::get('/show/{id}',[ UserController::class, 'show' ])->name('user.show');
+        Route::get('/edit/{id}',[ UserController::class, 'edit' ])->name('user.edit');
+        Route::put('/update',[ UserController::class, 'update' ])->name('user.update');
+        Route::get('/softdelete/{id}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
+        Route::get('/delete/{id}',[ UserController::class, 'destroy' ])->name('user.destroy');
     });
 
 
